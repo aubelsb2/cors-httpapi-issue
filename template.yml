@@ -10,11 +10,16 @@ Resources:
             MemorySize: 128
             Timeout: 100
             Events:
-                Api:
+                ApiGet:
                     Type: HttpApi
                     Properties:
                         Path: /
                         Method: GET
+                ApiOptions:
+                    Type: HttpApi
+                    Properties:
+                        Path: /
+                        Method: OPTIONS
 
     ServerlessHttpApi:
         Type: AWS::Serverless::HttpApi

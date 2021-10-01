@@ -9,3 +9,14 @@ region = "ap-southeast-2"
 confirm_changeset = false
 capabilities = "CAPABILITY_IAM"
 image_repositories = []
+
+[env2]
+[env2.deploy]
+[env2.deploy.parameters]
+stack_name = "sam-app"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-zc1vt9g1ikz"
+s3_prefix = "sam-app"
+region = "ap-southeast-2"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
