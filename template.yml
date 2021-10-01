@@ -11,7 +11,7 @@ Resources:
             Timeout: 100
             Events:
                 Api:
-                    Type: Api
+                    Type: HttpApi
                     Properties:
                         Path: /
                         Method: GET
@@ -20,25 +20,27 @@ Resources:
         Type: AWS::Serverless::HttpApi
         Properties:
             FailOnWarnings: true
-                CorsConfiguration:
-                    AllowMethods:
-                        - "*"
-                    AllowedHeaders:
-                        - "*"
-                    MaxAge: 600
-                    AllowCredentials: false
-                    AllowOrigins:
-                        - "*"
-                DefinitionBody: |
-                    openapi: "3.0.1"
-                    paths: {}
-                    x-amazon-apigateway-cors:
-                        allowOrigins:
-                          - '*'
-                        allowCredentials: false
-                        maxAge: 600
-                        allowMethods:
-                          - '*'
+            CorsConfiguration:
+                AllowMethods:
+                    - "*"
+                AllowHeaders:
+                    - "*"
+                MaxAge: 600
+                AllowCredentials: false
+                AllowOrigins:
+                    - "*"
+            DefinitionBody: |
+                openapi: "3.0.1"
+                paths: {}
+                x-amazon-apigateway-cors:
+                    allowOrigins:
+                      - '*'
+                    allowHeaders:
+                      - '*'
+                    allowCredentials: false
+                    maxAge: 600
+                    allowMethods:
+                      - '*'
 
 Outputs:
     HttpApiUrl:

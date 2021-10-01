@@ -2,11 +2,7 @@
     "name": "cors-httpapi-issue",
     "version": "0.0.1",
     "private": true,
-    "dependencies": {
-    },
-    "devDependencies": {
-    },
-    "scripts": {
-    }
+    "dependencies": {},
+    "devDependencies": {},
+    "scripts": {}
 }
-
