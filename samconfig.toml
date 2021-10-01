@@ -1,7 +1,7 @@
 version = 0.1
-[default]
-[default.deploy]
-[default.deploy.parameters]
+[env1]
+[env1.deploy]
+[env1.deploy.parameters]
 stack_name = "sam-app"
 s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-3zxf8gt7dmvn"
 s3_prefix = "sam-app"
