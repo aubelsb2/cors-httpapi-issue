@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+    handlerFunction:
+        Type: AWS::Serverless::Function
+        Properties:
+            Handler: src/handlers/handler.handler
+            Runtime: nodejs14.x
+            MemorySize: 128
+            Timeout: 100
+            Events:
+                Api:
+                    Type: Api
+                    Properties:
+                        Path: /
+                        Method: GET
+
+    ServerlessHttpApi:
+        Type: AWS::Serverless::HttpApi
+        Properties:
+            FailOnWarnings: true
+                CorsConfiguration:
+                    AllowMethods:
+                        - "*"
+                    AllowedHeaders:
+                        - "*"
+                    MaxAge: 600
+                    AllowCredentials: false
+                    AllowOrigins:
+                        - "*"
+                DefinitionBody: |
+                    openapi: "3.0.1"
+                    paths: {}
+                    x-amazon-apigateway-cors:
+                        allowOrigins:
+                          - '*'
+                        allowCredentials: false
+                        maxAge: 600
+                        allowMethods:
+                          - '*'
+
+Outputs:
+    HttpApiUrl:
+        Description: HTTP API End point
+        Value:
+            Fn::Sub: 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
+        Export:
+            Name: !Sub "${AWS::StackName}-HttpAPI"
+    HttpApiId:
+        Description: HTTP API ID
+        Value:
+            Fn::Sub: '${ServerlessHttpApi}'
+        Export:
+            Name: !Sub "${AWS::StackName}-HttpAPIID"
