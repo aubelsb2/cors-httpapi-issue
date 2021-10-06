@@ -18,13 +18,11 @@ Resources:
                 ApiGet:
                     Type: HttpApi
                     Properties:
-                        ApiId: !Ref HttpApi
                         Path: /
                         Method: GET
                 ApiOptions:
                     Type: HttpApi
                     Properties:
-                        ApiId: !Ref HttpApi
                         Path: /
                         Method: OPTIONS
 
@@ -32,16 +30,15 @@ Resources:
         Type: AWS::Serverless::HttpApi
         Properties:
             FailOnWarnings: true
-            StageName: !Ref StageName
             CorsConfiguration:
                 AllowOrigins:
-                    - "https://example.com"
+                    - "*"
                 AllowHeaders:
-                    - x-apigateway-header
+                    - "*"
                 AllowMethods:
-                    - GET
+                    - "*"
                 MaxAge: 600
-                AllowCredentials: true
+                AllowCredentials: false
 
 Outputs:
     HttpApiUrl:
