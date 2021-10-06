@@ -59,12 +59,12 @@ Outputs:
     HttpApiUrl:
         Description: HTTP API End point
         Value:
-            Fn::Sub: 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
+            Fn::Sub: 'https://${HttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
         Export:
             Name: !Sub "${AWS::StackName}-HttpAPI"
     HttpApiId:
         Description: HTTP API ID
         Value:
-            Fn::Sub: '${ServerlessHttpApi}'
+            Fn::Sub: '${HttpApi}'
         Export:
             Name: !Sub "${AWS::StackName}-HttpAPIID"
