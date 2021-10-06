@@ -1,6 +1,11 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform: AWS::Serverless-2016-10-31
 
+Parameters:
+    StageName:
+        Type: String
+        Default: '$default'
+
 Resources:
     handlerFunction:
         Type: AWS::Serverless::Function
@@ -13,27 +18,30 @@ Resources:
                 ApiGet:
                     Type: HttpApi
                     Properties:
+                        ApiId: !Ref HttpApi
                         Path: /
                         Method: GET
                 ApiOptions:
                     Type: HttpApi
                     Properties:
+                        ApiId: !Ref HttpApi
                         Path: /
                         Method: OPTIONS
 
-    ServerlessHttpApi:
+    HttpApi:
         Type: AWS::Serverless::HttpApi
         Properties:
             FailOnWarnings: true
+        StageName: !Ref StageName
             CorsConfiguration:
-                AllowMethods:
-                    - "*"
-                AllowHeaders:
-                    - "*"
-                MaxAge: 600
-                AllowCredentials: false
                 AllowOrigins:
-                    - "*"
+                    - "https://example.com"
+                AllowHeaders:
+                    - x-apigateway-header
+                AllowMethods:
+                    - GET
+                MaxAge: 600
+                AllowCredentials: true
             DefinitionBody: |
                 openapi: "3.0.1"
                 paths: {}
