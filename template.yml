@@ -32,7 +32,7 @@ Resources:
         Type: AWS::Serverless::HttpApi
         Properties:
             FailOnWarnings: true
-        StageName: !Ref StageName
+            StageName: !Ref StageName
             CorsConfiguration:
                 AllowOrigins:
                     - "https://example.com"
