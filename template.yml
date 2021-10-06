@@ -38,7 +38,7 @@ Resources:
                 AllowMethods:
                     - "*"
                 MaxAge: 600
-                AllowCredentials: false
+                AllowCredentials: true
 
 Outputs:
     HttpApiUrl:
