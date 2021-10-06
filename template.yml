@@ -42,18 +42,6 @@ Resources:
                     - GET
                 MaxAge: 600
                 AllowCredentials: true
-            DefinitionBody: |
-                openapi: "3.0.1"
-                paths: {}
-                x-amazon-apigateway-cors:
-                    allowOrigins:
-                      - '*'
-                    allowHeaders:
-                      - '*'
-                    allowCredentials: false
-                    maxAge: 600
-                    allowMethods:
-                      - '*'
 
 Outputs:
     HttpApiUrl:
