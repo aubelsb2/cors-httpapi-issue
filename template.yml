@@ -1,11 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform: AWS::Serverless-2016-10-31
 
-Parameters:
-    StageName:
-        Type: String
-        Default: '$default'
-
 Resources:
     handlerFunction:
         Type: AWS::Serverless::Function
@@ -18,15 +13,17 @@ Resources:
                 ApiGet:
                     Type: HttpApi
                     Properties:
+                        ApiId: !Ref HttpApi
                         Path: /
                         Method: GET
                 ApiOptions:
                     Type: HttpApi
                     Properties:
+                        ApiId: !Ref HttpApi
                         Path: /
                         Method: OPTIONS
 
-    ServerlessHttpApi:
+    HttpApi:
         Type: AWS::Serverless::HttpApi
         Properties:
             FailOnWarnings: true
@@ -44,12 +41,12 @@ Outputs:
     HttpApiUrl:
         Description: HTTP API End point
         Value:
-            Fn::Sub: 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
+            Fn::Sub: 'https://${HttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
         Export:
             Name: !Sub "${AWS::StackName}-HttpAPI"
     HttpApiId:
         Description: HTTP API ID
         Value:
-            Fn::Sub: '${ServerlessHttpApi}'
+            Fn::Sub: '${HttpApi}'
         Export:
             Name: !Sub "${AWS::StackName}-HttpAPIID"
