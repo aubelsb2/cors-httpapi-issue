@@ -26,7 +26,7 @@ Resources:
                         Path: /
                         Method: OPTIONS
 
-    HttpApiS:
+    ServerlessHttpApi:
         Type: AWS::Serverless::HttpApi
         Properties:
             FailOnWarnings: true
@@ -38,17 +38,18 @@ Resources:
                 AllowMethods:
                     - "*"
                 MaxAge: 600
+                AllowCredentials: false
 
 Outputs:
     HttpApiUrl:
         Description: HTTP API End point
         Value:
-            Fn::Sub: 'https://${HttpApiS}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
+            Fn::Sub: 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
         Export:
             Name: !Sub "${AWS::StackName}-HttpAPI"
     HttpApiId:
         Description: HTTP API ID
         Value:
-            Fn::Sub: '${HttpApiS}'
+            Fn::Sub: '${ServerlessHttpApi}'
         Export:
             Name: !Sub "${AWS::StackName}-HttpAPIID"
