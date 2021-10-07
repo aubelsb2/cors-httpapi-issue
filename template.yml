@@ -26,7 +26,7 @@ Resources:
                         Path: /
                         Method: OPTIONS
 
-    HttpApi:
+    HttpApiS:
         Type: AWS::Serverless::HttpApi
         Properties:
             FailOnWarnings: true
@@ -43,12 +43,12 @@ Outputs:
     HttpApiUrl:
         Description: HTTP API End point
         Value:
-            Fn::Sub: 'https://${HttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
+            Fn::Sub: 'https://${HttpApiS}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
         Export:
             Name: !Sub "${AWS::StackName}-HttpAPI"
     HttpApiId:
         Description: HTTP API ID
         Value:
-            Fn::Sub: '${HttpApi}'
+            Fn::Sub: '${HttpApiS}'
         Export:
             Name: !Sub "${AWS::StackName}-HttpAPIID"
