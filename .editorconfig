@@ -11,3 +11,12 @@ tab_width = 4
 
 [Makefile]
 indent_style = tab
+
+[*.yaml]
+charset = utf-8
+end_of_line = crlf
+indent_size = 2
+indent_style = space
+insert_final_newline = false
+max_line_length = off
+
